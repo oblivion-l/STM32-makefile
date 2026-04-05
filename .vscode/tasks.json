@@ -1,0 +1,97 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "make: build (debug)",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["CONFIG=debug", "-j8"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "make: build (release)",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["CONFIG=release", "-j8"],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "make: clean",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["clean"]
+    },
+    {
+      "label": "make: rebuild (debug)",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["rebuild", "CONFIG=debug", "-j8"],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "make: flash (debug)",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["flash", "CONFIG=debug"],
+      "dependsOn": "make: build (debug)",
+      "problemMatcher": []
+    },
+    {
+      "label": "make: size (debug)",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["size", "CONFIG=debug"],
+      "problemMatcher": []
+    },
+    {
+      "label": "make: list",
+      "type": "shell",
+      "command": "make",
+      "windows": {
+        "command": "mingw32-make"
+      },
+      "args": ["list"],
+      "problemMatcher": []
+    },
+    {
+      "label": "openocd: server",
+      "type": "shell",
+      "command": "openocd",
+      "args": ["-f", "openocd/stm32h743.cfg"],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "openocd",
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Listening on port 3333 for gdb connections.*",
+          "endsPattern": ".*shutdown command invoked.*"
+        }
+      }
+    }
+  ]
+}

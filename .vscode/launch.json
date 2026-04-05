@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "STM32H743 Debug (OpenOCD)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "servertype": "openocd",
+      "configFiles": [
+        "openocd/stm32h743.cfg"
+      ],
+      "preLaunchTask": "make: build (debug)",
+      "executable": "${workspaceFolder}/build/debug/${workspaceFolderBasename}.elf",
+      "runToEntryPoint": "main",
+      "device": "STM32H743ZI",
+      "interface": "swd",
+      "svdFile": "${workspaceFolder}/STM32H743.svd",
+      "showDevDebugOutput": "none"
+    }
+  ]
+}
